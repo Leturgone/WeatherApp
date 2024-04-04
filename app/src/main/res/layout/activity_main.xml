@@ -74,6 +74,7 @@
 
             <ImageView
                 android:layout_width="0dp"
+                android:onClick="getWeather"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:id="@+id/search_pic"
@@ -86,16 +87,19 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/TemperatureT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/TemperatureT"
             android:layout_below="@id/idLLLEdit"
-            android:layout_margin="18dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="18dp"
             android:gravity="center_horizontal"
             android:padding="5dp"
             android:text="18C"
             android:textColor="@color/white"
-            android:textSize="70dp"/>
+            android:textSize="70dp" />
         <!-- Вместо дефолтного текста нужно будет передавать температуру по городу-->
 
         <ImageView
