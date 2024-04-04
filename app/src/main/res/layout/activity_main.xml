@@ -89,8 +89,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/TemperatureT"
-            android:layout_below="@id/idLLLEdit"
-            android:layout_margin="18dp"
+            android:layout_below="@+id/TemperImage"
+            android:layout_margin="25dp"
             android:gravity="center_horizontal"
             android:padding="5dp"
             android:text="18C"
@@ -99,37 +99,47 @@
         <!-- Вместо дефолтного текста нужно будет передавать температуру по городу-->
 
         <ImageView
+            android:id="@+id/TemperImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/TemperImage"
+
+            android:layout_below="@id/idLLLEdit"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/TemperatureT"
-            android:layout_margin="18dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="18dp"
+            android:src="@mipmap/ic_launcher" />
 
         <!-- Вместо дефолтного изображения будет иконка погоды-->
 
         <TextView
+            android:id="@+id/WeatherCondition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/WeatherCondition"
-            android:layout_margin="18dp"
+            android:layout_below="@+id/TemperatureT"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="18dp"
             android:gravity="center"
+            android:text="темпера днем/ночью"
             android:textAlignment="center"
-            android:text="Состояние"
-            android:textColor="@color/white"
-            android:layout_below="@id/TemperImage"/>
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/NextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/WeatherCondition"
-            android:layout_margin="40dp"
             android:layout_centerInParent="true"
-            android:textAlignment="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
             android:text="Неделя"
-            android:gravity="center" />
+            android:textAlignment="center" />
 
     </RelativeLayout>
 
