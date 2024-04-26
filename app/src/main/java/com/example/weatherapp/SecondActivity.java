@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,15 +30,26 @@ public class SecondActivity extends AppCompatActivity {
     private TextView[] tempDayViews;
     private TextView[] tempNightViews;
     private ImageView[] weatherIcons;
+    private Button todayBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+        todayBtn = findViewById(R.id.today_button);
+
+        todayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SecondActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         Intent intent = getIntent();
 
-        // Retrieve the city data from the Intent
+        // Получение данных о городе из Intent
         city = intent.getStringExtra("city");
         API_URL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=ac804f49205e53e77d14a9e283ddbc4d&cnt=40";
         initializeViews();
@@ -77,7 +90,7 @@ public class SecondActivity extends AppCompatActivity {
     private void fetchWeatherData() {
         new Thread(() -> {
             try {
-                String json = Utils.fetchData(API_URL);  // Assume Utils.fetchData() makes an HTTP GET request
+                String json = Utils.fetchData(API_URL);// делаем запрос
                 JSONObject jsonObject = new JSONObject(json);
                 JSONArray list = jsonObject.getJSONArray("list");
                 runOnUiThread(() -> updateUI(list));
