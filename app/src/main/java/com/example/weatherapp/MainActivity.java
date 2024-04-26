@@ -2,6 +2,7 @@ package com.example.weatherapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.AsyncTask;
 
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     String city;
     TextInputEditText editText;
     ImageView imageMain;
+    private boolean cityIsValid = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,13 +111,15 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if (result != null) {
+                cityIsValid = true;
                 try {
                     JSONObject jsonObject = new JSONObject(result);
-                    // Изменение температуры
+                    // изменение температуры
                     double kelvinTemp = Double.parseDouble(jsonObject.getJSONObject("main").getString("temp"));
                     double celsiusTemp = kelvinTemp - 273.15;
                     String formattedTemp = String.format("%.2f", celsiusTemp);
                     temperatureT.setText(formattedTemp + " C");
+
                     // Получение иконки погоды
                     String iconCode = jsonObject.getJSONArray("weather").getJSONObject(0).getString("icon");
                     imageMain = findViewById(R.id.TemperImage);
@@ -154,10 +159,21 @@ public class MainActivity extends AppCompatActivity {
                     throw new RuntimeException(e);
                 }
             } else {
+                cityIsValid = false;
                 // Город не существует, выводим сообщение об ошибке
                 Toast.makeText(MainActivity.this, "Город не найден", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    public void onNext(View view) {
+        if (!cityIsValid) {
+            Toast.makeText(this, "Недопустимый город", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        intent.putExtra("city", city);
+        startActivity(intent);
+
+    }
 }
