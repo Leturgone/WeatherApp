@@ -133,6 +133,7 @@
 
         <Button
             android:id="@+id/NextButton"
+            android:onClick="onNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/TempDnNigt"
